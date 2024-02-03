@@ -4,7 +4,7 @@ import position
 w = 7.292 * math.pow(10,-5)
 
 class OceanCurrent:
-    def __init__(self, v_x_surface=2, v_y_surface=2, v_z_surface=0 , wind_v = 10 , v_x_deep = 0.01 , v_y_deep = 0.01):
+    def __init__(self, v_x_surface=0.5, v_y_surface=0.5, v_z_surface=0 , wind_v = 10 , v_x_deep = 0.01 , v_y_deep = 0.01):
         self.v_x_surface = v_x_surface
         self.v_y_surface = v_y_surface
         self.v_z_surface = v_z_surface
@@ -52,6 +52,11 @@ class OceanCurrent:
 class Ocean:
     def __init__(self):
         self.Cd = 0.2
+        self.depth = 570
+        self.trench_depth = 3000
+        self.rock_e = 0.62
+        self.rock_miu = 0.2
+        self.trench_slope = math.pi / 4
 
     def get_Viscosity(self,temperature):
         viscosity = 2.414 * math.pow(10,-5) * math.pow(10, 247.8 / (temperature - 140))
@@ -59,6 +64,7 @@ class Ocean:
 
     def get_Cd(self):
         return self.Cd
+
 
 my_ocean = Ocean()
 my_ocean_current = OceanCurrent()
